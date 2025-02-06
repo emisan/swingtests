@@ -1,6 +1,7 @@
+package src;
+
 import javax.swing.JFrame;
 
-@SuppressWarnings("serial")
 public class UndecoratedFrame extends JFrame
 {
 	public UndecoratedFrame()

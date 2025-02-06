@@ -1,4 +1,4 @@
-
+package src;
 
 
 import java.awt.BorderLayout;
@@ -27,38 +27,23 @@ import javax.swing.border.TitledBorder;
 public class MedysInfoDialog extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	
-	private Component komponenteImZentrum;
-	
-	private final String MEDYS_ICON_NAME = "Logo.png";
-	
+
+
 	private static final String MEDYS_VSDM_NAME = "MEDYS Versichertenstammdaten-Management (VSDM)";
-	
-	// GUI-Komponenten
-	//
-	private Font infoFont;
-	private JButton closeButton, nextButton, showNextButton, hideNextButton;
-	private JComboBox<String> changePanelChoice;
-	private JLabel labelForImage;
-	private JPanel mainPanel, logoPanel, buttonPanel;
-	private JTextArea textArea;
-	private JScrollPane scrollPanel;
-	
-	private ImageIcon corporateImage;
-	private TitledBorder textPanelBorder;
-	
-	private PanelA panelA;
-	private PanelB panelB;
-	private ChangePinPanel pinEingabePanel;
-	
-	private Map<String, JComponent> changeAblePanels;
-	
+
+    private JButton nextButton;
+
+    private JPanel mainPanel;
+    private JTextArea textArea;
+
+    private TitledBorder textPanelBorder;
+
+
 	/**
 	 * Erstell eine neue Instanz dieser Klasse
 	 */
 	public MedysInfoDialog() {
-		
-		initDialog(WindowConstants.EXIT_ON_CLOSE);
+		initDialog();
 	}
 	
 //	public MedysInfoDialog(int defaultCloseOperation)
@@ -66,79 +51,77 @@ public class MedysInfoDialog extends JFrame {
 //		initDialog(defaultCloseOperation);
 //	}
 	
-	private void initDialog(int closeOperation)
+	private void initDialog()
 	{	
-		initDialogConstraints(closeOperation);
+		initDialogConstraints();
 		initComponents();
-		setVisible(true);
 	}
 	
 	/*
 	 * Eigenschaften dieses Fensters festlegen
 	 */
-	private void initDialogConstraints(int closeOperation) {
+	private void initDialogConstraints() {
 		
 		setSize(640, 480);
 		setTitle(MedysInfoDialog.MEDYS_VSDM_NAME);
+		setVisible(true);
 		
-		System.out.println("Close-Operation = " + closeOperation);
-		
-		if((closeOperation >= 0) && (closeOperation < 3))
-		{
-			setDefaultCloseOperation(closeOperation);
-		}
-		else
-		{
-			setDefaultCloseOperation(EXIT_ON_CLOSE);
-		}
-		
-		setLocationRelativeTo(null);
+//		System.out.println("Close-Operation = " + WindowConstants.EXIT_ON_CLOSE);
+//
+//		if((WindowConstants.EXIT_ON_CLOSE >= 0) && (WindowConstants.EXIT_ON_CLOSE < 3))
+//		{
+//			setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//		}
+//		else
+//		{
+//			setDefaultCloseOperation(EXIT_ON_CLOSE);
+//		}
 	}
 	
 	private void initComponents()
 	{
-		/* prepare warn-icon image to be displayed in sunDisclaimerPanel */
-		corporateImage = new ImageIcon(getClass().getClassLoader().getResource(MEDYS_ICON_NAME));
-		labelForImage = new JLabel();
+        Map<String, JComponent> changeAblePanels;
+        JComboBox<String> changePanelChoice;
+		final Component[] komponenteImZentrum = new Component[1];
+        ImageIcon corporateImage = new ImageIcon(getClass().getClassLoader().getResource("Logo.png"));
+        JLabel labelForImage = new JLabel();
 		labelForImage.setIcon(corporateImage);
-		
-		logoPanel = new JPanel();
+
+        JPanel logoPanel = new JPanel();
 		logoPanel.setBackground(Color.WHITE);
 		logoPanel.add(labelForImage);
-		
-		closeButton = new JButton("Schliessen");
-		closeButton.addActionListener(listener -> {
-			int closeOperation = getDefaultCloseOperation();
-			switch(closeOperation)
-			{
-				case 0: //DO NOTHING ON CLOSE
-					break;
-				case 1: // HIDE ON CLOSE
-					setVisible(false);
-					break;
-				case 2: //DISPOSE ON CLOSE
-					dispose();
-					break;
-				case 3: // EXIT ON CLOSE
-					System.exit(0);
-					break;
-			}
-		});
+
+        JButton closeButton = new JButton("Schliessen");
+//		closeButton.addActionListener(listener -> {
+//			int closeOperation = getDefaultCloseOperation();
+//			switch(closeOperation)
+//			{
+//				case 0: //DO NOTHING ON CLOSE
+//					break;
+//				case 1: // HIDE ON CLOSE
+//					setVisible(false);
+//					break;
+//				case 2: //DISPOSE ON CLOSE
+//					dispose();
+//					break;
+//				case 3: // EXIT ON CLOSE
+//					System.exit(0);
+//					break;
+//			}
+//		});
 		
 		nextButton = new JButton("Weiter");
 		nextButton.setVisible(false);
-		
-		showNextButton = new JButton("Zeig Weiter");
-		showNextButton.addActionListener(listener -> {
-			nextButton.setVisible(true);
-		});
-		
-		hideNextButton = new JButton("Verstecke Weiter");
-		hideNextButton.addActionListener(listener -> {
-			nextButton.setVisible(false);
-		});
-		
-		infoFont = new Font("Arial", Font.BOLD, 16);
+
+        JButton showNextButton = new JButton("Zeig Weiter");
+		showNextButton.addActionListener(listener -> nextButton.setVisible(true));
+
+        JButton hideNextButton = new JButton("Verstecke Weiter");
+		hideNextButton.addActionListener(listener -> nextButton.setVisible(false));
+
+        // GUI-Komponenten
+        //
+        Font infoFont = new Font("Arial", Font.BOLD, 16);
 		
 		textPanelBorder = new TitledBorder("INFO");
 		textPanelBorder.setTitleFont(infoFont);
@@ -149,24 +132,24 @@ public class MedysInfoDialog extends JFrame {
 		textArea.setForeground(Color.BLACK);
 		textArea.setFont(infoFont);
 		textArea.setMargin(new Insets(5, 10, 10, 5));
-		
-		scrollPanel = new JScrollPane(textArea);
+
+        JScrollPane scrollPanel = new JScrollPane(textArea);
 		scrollPanel.setPreferredSize(new Dimension(this.getWidth()-20, 400));
 		scrollPanel.setBorder(textPanelBorder);
 		
-		komponenteImZentrum = scrollPanel;
+		komponenteImZentrum[0] = scrollPanel;
+
+        PanelA panelA = new PanelA();
+        PanelB panelB = new PanelB();
+        ChangePinPanel pinEingabePanel = new ChangePinPanel();
 		
-		panelA = new PanelA();
-		panelB = new PanelB();
-		pinEingabePanel = new ChangePinPanel();
-		
-		changeAblePanels = new HashMap<String, JComponent>();
+		changeAblePanels = new HashMap<>();
 		changeAblePanels.put("Panel B", panelB);
 		changeAblePanels.put("Panel A", panelA);
 		changeAblePanels.put("Pin-Eingabe", pinEingabePanel);
 		changeAblePanels.put("Standard", scrollPanel);
 		
-		changePanelChoice = new JComboBox<String>();
+		changePanelChoice = new JComboBox<>();
 		
 		for(String key : changeAblePanels.keySet())
 		{
@@ -175,14 +158,14 @@ public class MedysInfoDialog extends JFrame {
 		
 		changePanelChoice.addActionListener(listener -> {
 			
-			Component austauschKomponente = changeAblePanels.get(changePanelChoice.getItemAt(changePanelChoice.getSelectedIndex()).toString());
+			Component austauschKomponente = changeAblePanels.get(changePanelChoice.getItemAt(changePanelChoice.getSelectedIndex()));
 			
-			changeComponentOfPanelWith(mainPanel, komponenteImZentrum, austauschKomponente, BorderLayout.CENTER);
-			komponenteImZentrum = austauschKomponente;
+			changeComponentOfPanelWith(mainPanel, komponenteImZentrum[0], austauschKomponente, BorderLayout.CENTER);
+			komponenteImZentrum[0] = austauschKomponente;
 			validate();
 		});
-		
-		buttonPanel = new JPanel();
+
+        JPanel buttonPanel = new JPanel();
 		buttonPanel.setBackground(Color.gray);
 		buttonPanel.add(changePanelChoice);
 		buttonPanel.add(nextButton);
@@ -197,7 +180,7 @@ public class MedysInfoDialog extends JFrame {
 		mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 		
 		getContentPane().add(mainPanel);
-		
+		setLocationRelativeTo(null);
 		validate();
 	}
 	
@@ -230,8 +213,8 @@ public class MedysInfoDialog extends JFrame {
 	 * </blockquote>
 	 * 
 	 * @param panel das JPanel, das die <code>toChange</code>-Komponente in seinem RootPane beinhaltet
-	 * @param toChange die Komponente, die ersetzt werden soll
-	 * @param withComponent die Komponente, die die neue Komponente an der Orientierungsangabe ist
+	 * @param oldComponent die Komponente, die ersetzt werden soll
+	 * @param newComponent die Komponente, die die neue Komponente an der Orientierungsangabe ist
 	 * @param layoutOrientation die Orientierungsangabe des BorderLayout des <code>panel</code> an der sich die Komponente
 	 * 			<code>toChange</code> befindet
 	 * @return die Komponente welche die alte ersetzt hat, sonst NULL
@@ -247,7 +230,6 @@ public class MedysInfoDialog extends JFrame {
 					panel.remove(oldComponent);
 					panel.repaint();
 					panel.add(newComponent, layoutOrientation);
-					oldComponent = newComponent;
 				}
 			}
 		}
@@ -257,16 +239,15 @@ public class MedysInfoDialog extends JFrame {
 	 */
 	private boolean istOrientierungVonBorderLayout(String orientierungsAngabe)
 	{
-		return orientierungsAngabe != null
-				? 
-				orientierungsAngabe.equals(BorderLayout.AFTER_LAST_LINE) || orientierungsAngabe.equals(BorderLayout.AFTER_LINE_ENDS)
-				|| orientierungsAngabe.equals(BorderLayout.BEFORE_FIRST_LINE) || orientierungsAngabe.equals(BorderLayout.BEFORE_LINE_BEGINS)
-				|| orientierungsAngabe.equals(BorderLayout.CENTER) || orientierungsAngabe.equals(BorderLayout.EAST)
-				|| orientierungsAngabe.equals(BorderLayout.LINE_END) || orientierungsAngabe.equals(BorderLayout.LINE_START)
-				|| orientierungsAngabe.equals(BorderLayout.NORTH) || orientierungsAngabe.equals(BorderLayout.PAGE_END)
-				|| orientierungsAngabe.equals(BorderLayout.PAGE_START) || orientierungsAngabe.equals(BorderLayout.SOUTH)
-				|| orientierungsAngabe.equals(BorderLayout.WEST)
-				: false;
+		return orientierungsAngabe != null && (orientierungsAngabe.equals(BorderLayout.BEFORE_LINE_BEGINS)
+                || orientierungsAngabe.equals(BorderLayout.CENTER)
+                || orientierungsAngabe.equals(BorderLayout.EAST)
+                || orientierungsAngabe.equals(BorderLayout.LINE_END)
+                || orientierungsAngabe.equals(BorderLayout.NORTH)
+                || orientierungsAngabe.equals(BorderLayout.PAGE_END)
+                || orientierungsAngabe.equals(BorderLayout.PAGE_START)
+                || orientierungsAngabe.equals(BorderLayout.SOUTH)
+                || orientierungsAngabe.equals(BorderLayout.WEST));
 	}
 	
 	public void changeDefaultCloseOperation(WindowConstants constant)

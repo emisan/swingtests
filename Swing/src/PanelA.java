@@ -1,10 +1,11 @@
+package src;
+
 import java.awt.BorderLayout;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-@SuppressWarnings("serial")
 public class PanelA extends JPanel
 {
 	private JButton okButton, cancelButton;

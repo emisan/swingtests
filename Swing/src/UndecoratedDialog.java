@@ -1,3 +1,5 @@
+package src;
+
 import javax.swing.JDialog;
 import javax.swing.JRootPane;
 

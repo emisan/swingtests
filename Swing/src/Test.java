@@ -1,3 +1,5 @@
+package src;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,38 +24,12 @@ public class Test
 //	
 	public static void main(String[] args)
 	{
-//		ActionListener actl = new ActionListener()
-//		{
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e)
-//			{
-//				setCounter(getCounter() + 1);
-//			}
-//		};
-//		
-//		MedysInfoDialog infoDialog = new MedysInfoDialog();
-//		infoDialog.setNextButtonVisible(true);
-//		infoDialog.setVisible(true);
-		
 		// Undecorated test
-		
-		SwingUtilities.invokeLater(new Runnable()
-				{
-					@Override
-					public void run()
-					{
-						new UndecoratedFrame();
-					}
-				});
-		
-//		SwingUtilities.invokeLater(new Runnable()
-//		{
-//			@Override
-//			public void run()
-//			{
-//				new UndecoratedDialog();
-//			}
-//		});
+//		SwingUtilities.invokeLater(() -> new UndecoratedFrame());
+
+		SwingUtilities.invokeLater(() -> {
+            MedysInfoDialog infoDialog = new MedysInfoDialog();
+            infoDialog.setNextButtonVisible(true);
+        });
 	}
 }

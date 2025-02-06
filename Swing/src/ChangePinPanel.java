@@ -1,4 +1,4 @@
-
+package src;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -18,33 +18,25 @@ public class ChangePinPanel extends JPanel
 	private static final long serialVersionUID = -7706611514104837249L;
 
 	private String pinEntry;
-	
-	private BorderLayout borderLayout;
-	
-	private Font infoFont;
-	
-	private JButton changePinButton, closeDialogButton;
-	
-	private JButton[] entryButtons;
-	
+
+
 	private JTextArea textArea;
 	private JTextField txtfPinEntry;
-	
-	private JPanel entryButtonsPanel, controlButtonsPanel, buttonsPanel;
 
-	public ChangePinPanel()
+    public ChangePinPanel()
 	{
 		setBackground(Color.gray);
 		initComponents();
 	}
 
 	private void initComponents()
-	{		
-		borderLayout = new BorderLayout();
+	{
+        JButton[] entryButtons;
+        BorderLayout borderLayout = new BorderLayout();
 		borderLayout.setHgap(10);
 		borderLayout.setVgap(10);
-		
-		entryButtonsPanel = new JPanel();
+
+        JPanel entryButtonsPanel = new JPanel();
 		entryButtonsPanel.setLayout(new GridLayout(4, 3));
 		
 		entryButtons = new JButton[12];
@@ -53,7 +45,7 @@ public class ChangePinPanel extends JPanel
 		{
 			final int j = i; // notwendig: effectively final int, für den Lambda Ausdruck der ActionListener-Zuweisung !!
 			
-			if((i >= 0) && (i < 9)) // eingabezahlen 1-9
+			if(i < 9) // eingabezahlen 1-9
 			{
 				// leere Platzhalter schaffen um 0-Button
 				entryButtons[i] = new JButton("" + (i+1));
@@ -64,31 +56,30 @@ public class ChangePinPanel extends JPanel
 				entryButtons[i] = new JButton("");
 				entryButtons[i].setVisible(false);
 			}
-			else if(i == 10)
-			{
+			else {
 				entryButtons[i] = new JButton("0");
 				entryButtons[i].addActionListener(listener -> setPinEntry(entryButtons[j].getText()));
 			}
 			entryButtonsPanel.add(entryButtons[i]);
 		}
-		
-		changePinButton = new JButton("Ändern");
-		closeDialogButton = new JButton("Abbruch");
+
+        JButton changePinButton = new JButton("Ändern");
+        JButton closeDialogButton = new JButton("Abbruch");
 		
 		changePinButton.addActionListener(listener -> System.out.println("neue Pin " + txtfPinEntry.getText()));
 		closeDialogButton.addActionListener(listener -> System.exit(0));
-		
-		controlButtonsPanel = new JPanel();
+
+        JPanel controlButtonsPanel = new JPanel();
 		controlButtonsPanel.getInsets().set(10,  10, 10, 10);
 		controlButtonsPanel.add(changePinButton);
 		controlButtonsPanel.add(closeDialogButton);
-		
-		buttonsPanel = new JPanel();
+
+        JPanel buttonsPanel = new JPanel();
 		buttonsPanel.setLayout(borderLayout);
 		buttonsPanel.add(entryButtonsPanel, "North");
 		buttonsPanel.add(controlButtonsPanel, "Center");
-		
-		infoFont = new Font("Arial", Font.BOLD, 16);
+
+        Font infoFont = new Font("Arial", Font.BOLD, 16);
 		
 		textArea = new JTextArea();
 		textArea.setBackground(Color.gray);

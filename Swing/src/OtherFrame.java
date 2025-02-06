@@ -1,16 +1,15 @@
+package src;
+
 import java.awt.BorderLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-@SuppressWarnings("serial")
 public class OtherFrame extends JFrame
 {
-	private JButton showButton, closeButton;
-	
-	private JPanel buttonPanel;
-	
+
+
 	public OtherFrame()
 	{
 		initFrame();
@@ -18,10 +17,11 @@ public class OtherFrame extends JFrame
 	
 	private void initFrame()
 	{
-		showButton = new JButton("Zeig MedysInfoDialog");
+  JPanel buttonPanel;
+        JButton showButton = new JButton("Zeig MedysInfoDialog");
 		showButton.addActionListener(listener -> new MedysInfoDialog().setInCenterOfParent(this));
-		
-		closeButton = new JButton("Schliessen");
+
+        JButton closeButton = new JButton("Schliessen");
 		closeButton.addActionListener(listener -> System.exit(0));
 		
 		buttonPanel = new JPanel();
