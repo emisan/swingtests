@@ -1,4 +1,4 @@
-package src;
+package org.kayaman.medys;
 
 import javax.swing.JFrame;
 

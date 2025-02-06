@@ -1,7 +1,6 @@
-package src;
+package org.kayaman.medys;
 
 import javax.swing.JDialog;
-import javax.swing.JRootPane;
 
 public class UndecoratedDialog extends JDialog
 {

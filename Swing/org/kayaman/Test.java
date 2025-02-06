@@ -1,10 +1,8 @@
-package src;
+package org.kayaman;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import org.kayaman.medys.MedysInfoDialog;
 
 import javax.swing.SwingUtilities;
-import javax.swing.Timer;
 
 public class Test
 {

@@ -1,4 +1,4 @@
-package src;
+package org.kayaman.medys;
 
 import java.awt.BorderLayout;
 
@@ -8,13 +8,12 @@ import javax.swing.JPanel;
 
 public class PanelA extends JPanel
 {
-	private JButton okButton, cancelButton;
+	private final JButton okButton;
+    private final JButton cancelButton;
 	
-	private JLabel infoLabel;
-	
-	private JPanel buttonPanel;
-	
-	public PanelA()
+	private final JLabel infoLabel;
+
+    public PanelA()
 	{
 		infoLabel = new JLabel();
 		infoLabel.setSize(300, 200);
@@ -25,8 +24,8 @@ public class PanelA extends JPanel
 		okButton.addActionListener(listener -> infoLabel.setText(okButton.getText() + " gedrückt!"));
 		
 		cancelButton.addActionListener(listener -> infoLabel.setText(cancelButton.getText() + " gedrückt!"));
-		
-		buttonPanel = new JPanel();
+
+        JPanel buttonPanel = new JPanel();
 		buttonPanel.add(okButton);
 		buttonPanel.add(cancelButton);
 		buttonPanel.getInsets().set(10, 5, 10, 5);
