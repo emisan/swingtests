@@ -21,13 +21,13 @@ public final class SpriteLoader {
     @NonNull
     public static BufferedImage getSprite(@NonNull final String resourcePath) {
         BufferedImage image = null;
-        try (final InputStream imageSrc = SpriteLoader.class.getResourceAsStream(resourcePath)) {
+        try (final InputStream imageSrc = SpriteLoader.class.getClassLoader().getResourceAsStream(resourcePath)) {
             if (imageSrc != null) {
                 image = ImageIO.read(imageSrc);
             }
             else {
-                final String msg = String.format("Given sprite name path %s can not be found in resource folder %s!",
-                        resourcePath, "sprites");
+                final String msg = String.format("Given sprite name path %s can not be found in resource folder!",
+                        resourcePath);
                 throw new IllegalArgumentException(msg);
             }
         }

@@ -8,10 +8,10 @@ public class ItemInventoryEntry {
     private int amount;
     private GameObject gameObject;
 
-    public ItemInventoryEntry(@NonNull final String itemName, final int amount, @NonNull final GameObject gameObject) {
-        this.itemName = itemName;
+    public ItemInventoryEntry(final int amount, @NonNull final GameObject gameObject) {
         this.amount = amount;
         this.gameObject = gameObject;
+        this.itemName = gameObject.getItemName();
     }
 
     public String getItemName() {

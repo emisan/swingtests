@@ -19,7 +19,7 @@ public class ItemInventoryHandler {
                 .filter(obj -> gameObject.getItemName().equalsIgnoreCase(obj.getItemName()))
                 .findFirst().orElse(null);
         if (entry == null) {
-            inventory.add(new ItemInventoryEntry(gameObject.getItemName(), INCREMENT_AMOUNT, gameObject));
+            inventory.add(new ItemInventoryEntry(INCREMENT_AMOUNT, gameObject));
         }
         else {
             entry.setAmount(entry.getAmount() + INCREMENT_AMOUNT);

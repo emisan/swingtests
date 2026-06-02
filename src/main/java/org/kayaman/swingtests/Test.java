@@ -1,5 +1,6 @@
 package org.kayaman.swingtests;
 
+import org.kayaman.swingtests.others.JLabelTest;
 import org.kayaman.swingtests.others.JListTest;
 
 import javax.swing.SwingUtilities;
@@ -8,8 +9,9 @@ public class Test
 {
 	public static void main(String[] args)
 	{
+//		SwingUtilities.invokeLater(JLabelTest::new);
 
-		SwingUtilities.invokeLater(JListTest::new);
+//		SwingUtilities.invokeLater(JListTest::new);
 
 //		SwingUtilities.invokeLater(() -> {
 //			MedysInfoDialog infoDialog = new MedysInfoDialog();

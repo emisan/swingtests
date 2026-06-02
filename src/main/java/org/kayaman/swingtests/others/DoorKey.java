@@ -2,7 +2,7 @@ package org.kayaman.swingtests.others;
 
 import lombok.NonNull;
 
-import java.awt.Rectangle;
+
 import java.awt.image.BufferedImage;
 
 public class DoorKey implements GameObject {
